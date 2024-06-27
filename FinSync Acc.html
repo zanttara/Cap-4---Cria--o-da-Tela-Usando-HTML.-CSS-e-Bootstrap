@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang = "pt-br">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <title>FinSync Acc</title>
+</head>
+
+<script>
+  function fLogin(){
+    $("#dv_login").show();
+    $("#dv_cadastrese").hide();
+    $("#bt_cadastrase").removeClass("btn-info");
+    $("#bt_cadastrase").addClass("btn-outline-info");
+    $("#bt_login").removeClass("btn-outline-info");
+    $("#bt_login").addClass("btn-info");
+
+    $("#nome_completo").val("");
+    $("#usuario").val("");
+    $("#cpf").val("");
+    $("#email").val("");
+    $("#criar_senha").val("");
+    $("#confirma_senha").val("");
+
+  }
+  function fCadastrese(){
+
+    $("#dv_cadastrese").show();
+    $("#dv_login").hide();
+    $("#bt_login").removeClass("btn-info");
+    $("#bt_login").addClass("btn-outline-info");
+    $("#bt_cadastrase").removeClass("btn-outline-info");
+    $("#bt_cadastrase").addClass("btn-info");
+
+
+    $("#login").val("");
+    $("#senha").val("");
+
+  }
+
+  function fCriarconta(){
+    var msg = "";
+    var nomecompleto = $("#nome_completo").val();
+    var usuario = $("#usuario").val();
+    var cpf = $("#cpf").val();
+    var email = $("#email").val();
+    var criarsenha = $("#criar_senha").val();
+    var confirmasenha = $("#confirma_senha").val();
+
+    // Desabilitar o botão de "Criar Conta"
+    $("#bt_criarconta").prop("disabled", true);
+
+
+    if (nomecompleto == ""){
+      msg += " - Preencha o Nome completo \n"
+    }
+    if (usuario == ""){
+      msg += " - Preencha o Usuário \n"
+    }
+    if (cpf == ""){
+      msg += " - Preencha o CPF \n"
+    }
+    if (email == ""){
+      msg += " - Preencha o E-mail \n"
+    }
+    if (criarsenha == ""){
+      msg += " - Preencha a Senha \n"
+    }
+    if (confirmasenha == ""){
+      msg += " - Preencha Confirmar Senha \n"
+    }
+
+    if (confirmasenha != criarsenha  && confirmasenha != "" && criarsenha != "") {
+      msg += " - Senha inválida \n"
+
+    }
+
+    if (msg != ""){
+
+      // Exibi mensagem de "Atenção"
+      swal("Atenção", msg, "error");
+      
+      // Habilitar o botão de "Criar Conta"
+      $("#bt_criarconta").prop("disabled", false);
+
+    }
+
+    // Simular um login quando todos os campos forem preenchidos
+    else {
+      swal({
+        title: "",
+        text: "Conta criada com sucesso.",
+        icon: "success",
+      })
+              .then((willDelete) => {
+                if (willDelete) {
+                  location.href = location.href;
+                }
+              });
+    }
+
+  }
+
+  function fEntrar() {
+    var msg = "";
+    var login = $("#login").val();
+    var senha = $("#senha").val();
+
+    // Desabilitar o botão de "Entrar"
+    $("#bt_entrar").prop("disabled", true);
+
+    if (login == "") {
+      msg += " - Preencha o campo login \n"
+    }
+    if (senha == ""){
+      msg += " - Preencha o campo senha \n"
+    }
+
+    if ((login != "zanttara" && login != "") || (senha != "123456" && senha != "")){
+      msg += " - Usuario ou senha não inválida"
+    }
+
+    if (msg != ""){
+
+      // Habilitar o botão de "Atenção"
+      $("#bt_entrar").prop("disabled", false);
+
+      // Exibi mensagem de "Atenção"
+      swal("Atenção", msg, "error");
+
+    }
+    // Simular um login quando o usuario for "zanttara" e senha "123456"
+    else {
+
+      swal({
+        title: "",
+        text: "Login efetuado com sucesso.",
+        icon: "success",
+      })
+              .then((willDelete) => {
+                if (willDelete) {
+                  location.href = location.href;
+                }
+              });
+    }
+
+  }
+
+
+
+</script>
+
+<style type="text/css">
+
+  .texto_h1{
+    text-align: center; 
+    font-weight: bold; 
+    margin-top: 5%;
+  }
+  
+  .texto_branco{
+    color: white;
+  }
+
+  .width_100{
+    width: 100%;
+  }
+
+  .margin_top5{
+    margin-top: 5%;
+  }
+
+  .texto_rodape{
+    text-align: center;
+    margin-top: 10%; 
+    color: #888888; 
+    cursor: pointer;
+  }
+
+  .texto_center{
+    text-align: center;
+  }
+
+</style>
+
+
+<body style="background-color: black">
+
+<div class="row">
+  <div class="col-md-4 offset-md-4" style="background-color: black">
+    <h1 class="text-info texto_h1"><u>FinSync Acc</u></h1>
+
+    <!-- div button - Eduardo Zanttara -->
+    <div class="row" style="margin-top: 10%">
+      <div class="col-md-6">
+        <button class="btn btn-info width_100" name="bt_login" id="bt_login" onclick="fLogin();">Login</button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-outline-info width_100" name="bt_cadastrase" id="bt_cadastrase" onclick="fCadastrese();">Cadastre-se</button>
+      </div>
+    </div>
+    <!-- fim div button -->
+
+    <!-- inicio div_cadastre-se - Eduardo Zanttara -->
+    <div id="dv_cadastrese" style="display: none">
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">Nome Completo <font class="text-danger"> *</font></label>
+          <input  name="nome_completo" id="nome_completo" value="" placeholder="Digite aqui seu nome." class="form-control" />
+        </div>
+      </div>
+
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">Usuário <font class="text-danger"> *</font></label>
+          <input  name="usuario" id="usuario" value="" placeholder="Digite aqui seu usuario." class="form-control" />
+        </div>
+      </div>
+
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">CPF<font class="text-danger"> *</font></label>
+          <input type="number" name="cpf" id="cpf" value="" placeholder="Digite aqui seu CPF" class="form-control" />
+        </div>
+      </div>
+
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">E-mail<font class="text-danger"> *</font></label>
+          <input  name="email" id="email" value="" placeholder="Digite aqui seu e-mail" class="form-control" />
+        </div>
+      </div>
+
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">Crie uma senha<font class="text-danger"> *</font></label>
+          <input type="password" name="criar_senha" id="criar_senha" value="" placeholder="Digite aqui sua senha" class="form-control" />
+        </div>
+      </div>
+
+      <div class="row margin_top5">
+
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">Confirme sua senha<font class="text-danger"> *</font></label>
+          <input  type="password" name="confirma_senha" id="confirma_senha" value="" placeholder="Confirme sua senha" class="form-control" />
+        </div>
+      </div>
+
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2 texto_center">
+          <button class="btn btn-info width_100" name= "bt_criarconta" id="bt_criarconta" onclick="fCriarconta();">Criar Conta</button>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <!-- inicio div_login - Eduardo Zanttara -->
+    <div id="dv_login">
+
+      <!-- inicio input -->
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">Login</label>
+          <input  name="login" id="login" value="" placeholder="Digite seu CPF ou e-mail" class="form-control" />
+        </div>
+      </div>
+
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2">
+          <label class="texto_branco">Senha</label>
+          <input type="password"  name="senha" id="senha" value="" placeholder="*******" class="form-control" />
+        </div>
+      </div>
+      <!-- fim input -->
+
+      <!-- button entrar -->
+      <div class="row margin_top5">
+        <div class="col-md-8 offset-md-2 texto_center">
+          <button class="btn btn-info width_100" name= "bt_entrar" id="bt_entrar" onclick="fEntrar()">Entrar</button>
+        </div>
+      </div>
+      <!-- fim button -->
+
+      <div class="row">
+        <div class="col-md-12 texto_rodape">
+          Esqueceu a senha?
+        </div>
+      </div>
+
+    </div> <!-- fim div_login -->
+
+
+  </div>
+
+</div>
+
+</body>
+</html>
